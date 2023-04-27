@@ -1,0 +1,7 @@
+servlets\Registro.class
+com\mycompany\comparte\resources\Conexion$Usuario.class
+com\mycompany\comparte\resources\JakartaEE91Resource.class
+servlets\Login.class
+com\mycompany\comparte\resources\Conexion.class
+com\mycompany\comparte\JakartaRestConfiguration.class
+servlets\NewPost.class
