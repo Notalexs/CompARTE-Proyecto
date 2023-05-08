@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -37,13 +37,19 @@ public class Registro extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
+    
+    
+    
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        
         String email = request.getParameter("email");
         String fecha = request.getParameter("fechanacimiento");
         String usuario = request.getParameter("usuario");
@@ -58,29 +64,26 @@ public class Registro extends HttpServlet {
 
         // Verify the content type
         String contentType = request.getContentType();
-   
      
-      
-      try { 
-         // Parse the request to get file items.
-          final Collection<Part> fileItems = request.getParts();
+        try { 
+           // Parse the request to get file items.
+              final Collection<Part> fileItems = request.getParts();
 
-       
+              for (final Part part : fileItems) {
+                  if(part.getSubmittedFileName()!=null){
+                      part.write("..\\..\\..\\..\\..\\..\\..\\..\\..\\imagenes\\"+part.getSubmittedFileName());
+                      foto = part.getSubmittedFileName();
+                      System.out.println(part.getSubmittedFileName());
+                      System.out.println();
+                  }
+              }
 
-        for (final Part part : fileItems) {
-            if(part.getSubmittedFileName()!=null){
-                part.write("..\\..\\..\\..\\..\\..\\..\\..\\..\\imagenes\\"+part.getSubmittedFileName());
-                foto = part.getSubmittedFileName();
-                System.out.println(part.getSubmittedFileName());
-                System.out.println();
-            }
-         }
-          
-       System.out.println("Subido correctamente");
-      } catch(Exception ex) {
-         System.out.println("error de subida "+ex.getMessage());
-      }
+              System.out.println("Subido correctamente");
+        } catch(Exception ex) {
+           System.out.println("error de subida "+ex.getMessage());
+        }
    
+        
         int resultado = con.agregarUsuario(nombre, apellido, fecha, email, usuario, pwd, foto);
         
         response.sendRedirect("index.jsp");
@@ -127,11 +130,14 @@ public class Registro extends HttpServlet {
         }
     }
 
+    
+    
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

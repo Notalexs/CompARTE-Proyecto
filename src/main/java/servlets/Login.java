@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +32,7 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        
          String usuario = request.getParameter("usuario");
          String pwd = request.getParameter("pwd");
          HttpSession session=  request.getSession();
@@ -41,7 +41,12 @@ public class Login extends HttpServlet {
          
          Usuario usu=con.login(usuario, pwd);
          if(usu!=null){
-             session.setAttribute("usuario", usu);
+             session.setAttribute("usuario", usu.usuario);
+             session.setAttribute("nombre", usu.nombre);
+             session.setAttribute("User", usu);
+             
+             
+             
              response.sendRedirect("Dashboard.jsp");
          }else{
               session.setAttribute("error", "El usuario o contraseña son incorrectos");

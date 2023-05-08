@@ -6,7 +6,6 @@ package com.mycompany.comparte.resources;
 
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,9 +21,11 @@ public static boolean exito = false;
 public static int idUsuario = 0;
 public static int idLibro = 0;
     public Conexion() throws ClassNotFoundException{
-        try 
+        try  
             {
+                
                 Class.forName("com.mysql.jdbc.Driver");
+                //En esta parte hace la conexion con la base de datos 
                 ccn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/comparte","root", "");
                   st = ccn.createStatement();
                   exito=true;
@@ -32,6 +33,33 @@ public static int idLibro = 0;
                 {
                     JOptionPane.showMessageDialog(null, "CONEXION ERRONEA " + e);  
                 }
+    }
+    
+    
+    // USER VARIABLES
+    
+    public class Usuario{
+        public String usuario;
+        public String pwd; 
+        public String nombre;
+        public String apellido;
+        public String email;
+        public String fechaNac;
+        public String fechaCrea;
+        public String foto;
+        public int idUsuario;
+        public int idEstado;
+    }
+    
+    
+    // CRUD USER INFO WITHOUT DELETE
+    
+    public int leerUsuario(String usuario) throws SQLException{
+        int rA=0;
+        String query = "SELECT * from usuario WHERE idusuario='"+usuario+"';";
+        System.out.println(query);
+        rA=st.executeUpdate(query);
+        return rA;
     }
     
     public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
@@ -42,29 +70,34 @@ public static int idLibro = 0;
         return rA;
     }
     
-    public class Usuario{
-        public String usuario;
-        public String pwd; 
-        public String nombre;
-        public String apellido;
-        public String email;
-        public String fechaNac;
-        public String fechaCrea;
-        public int idEstado;
-        public String foto;
-        public int idUsuario;
+    public int editarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
+        int rA=0;
+        
+        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen,idestado) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"',1);";
+        
+        System.out.println(query);
+        
+        rA=st.executeUpdate(query);
+        
+        return rA;
+        
     }
     
+    
+    
+    
     public int validarUsuario(String usu) throws SQLException{
+        
         int e=0;
         
-         Usuario usuario = null;
+        Usuario usuario = null;
+        
         String query = "select * from usuario where usuario='"+usu+"' ";
          
         ResultSet rs=st.executeQuery(query);
+        
         while(rs.next()){
            e=1; 
-           //Encontrado
         }
         
         return e;
@@ -82,18 +115,22 @@ public static int idLibro = 0;
             usuario.nombre = rs.getString("nombre");
             usuario.apellido = rs.getString("apellido");
             usuario.email = rs.getString("email");
+            usuario.usuario = rs.getString("usuario");
           
         }
         return usuario;
     }
         
     
-    public int agregarUsuario(String nombre, String app, String apm, String tel,String email) throws SQLException{
-        int rA=0;
-        String query = "insert into usuarios(nombre,app,apm,tel,email) values('"+nombre+"','"+app+"','"+apm+"','"+tel+"','"+email+"');";
-        rA=st.executeUpdate(query);
-        return rA;
-    }
+    /*
+        public int agregarUsuario(String nombre, String app, String apm, String tel,String email) throws SQLException{
+            int rA=0;
+            String query = "insert into usuarios(nombre,app,apm,tel,email) values('"+nombre+"','"+app+"','"+apm+"','"+tel+"','"+email+"');";
+            rA=st.executeUpdate(query);
+            return rA;
+        }
+    
+    */
     
     
     public int agregarAutor(String nombre,String pais) throws SQLException{
@@ -110,7 +147,7 @@ public static int idLibro = 0;
         return rA;
     }
     
-     public int eliminarUsuario(int id) throws SQLException{
+    public int eliminarUsuario(int id) throws SQLException{
         int rA=0;
         String query = "delete from usuarios where id= "+id;
         rA=st.executeUpdate(query);
@@ -264,7 +301,7 @@ public static int idLibro = 0;
 //            lst.add(autor);
 //        }
 //        return lst;
-//    }
+//    } 
 //     
 //    
     public Connection getConnection(){

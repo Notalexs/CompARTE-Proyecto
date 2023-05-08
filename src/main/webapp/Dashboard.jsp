@@ -53,7 +53,7 @@
                   
 
                 <a href="publicacion.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-create mr-3 lead"></i>Publicar</a>
-                <a href="perfil.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-person mr-3 lead"></i>Perfil</a>
+                <a href="perfil.jsp" action="Perfil" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-person mr-3 lead"></i>Perfil</a>
                 <a href="index.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a>
 
                 
@@ -129,8 +129,8 @@
                     <div class="profile-picture3 rounded-circle mr-3 ">
                     </div>
                     <div>
-                        <a href="#" class=" d-block bg-bluee mb-0">Annitas</a>
-                        <small class="text-muted">Ana Rodriguez</small>
+                        <a href="#" class=" d-block bg-bluee mb-0">${usuario}</a>
+                        <small class="text-muted">${nombre}</small>
                     </div>
                     </div>
 
