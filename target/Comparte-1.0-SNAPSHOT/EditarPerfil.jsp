@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EditarPerfil
-    Created on : 10 mar 2023, 13:10:30
-    Author     : USUARIO
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -93,13 +87,24 @@
                                Correo electrónico<span class="text-danger">*</span>
                             <input type="email" class="form-control bg-bluex border-0" placeholder="Tu correo electrónico">
                         </div>
-                       
+                       <div class="form-group col-md-6">
+                            <label class="font-weight-bold">
+                                Foto<span class="text-danger">*</span>
+                            <input type="file" name="file" class="form-control bg-bluex border-0" required="required">
+                        </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold">
                               Contraseña<span class="text-danger">*</span>
                             <input type="password" class="form-control bg-bluex border-0" placeholder="Tu contraseña">
                             <p></p>
                             <button type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4">Registrar</button>
+                            
+                            <button
+                                onclick="location.href='perfil.jsp'"
+                                type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4"> 
+                                Regresar 
+                            </button>
+                        
                         </div>
                         
                         

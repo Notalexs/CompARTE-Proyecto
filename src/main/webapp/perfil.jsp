@@ -93,7 +93,7 @@
               ><i class="icon ion-md-person mr-3 lead"></i>Perfil</a
             >
             
-            <a href="index.jsp" class="d-block p-3 bg-bluee"
+            <a href="index.jsp" action="Logout" method="post" class="d-block p-3 bg-bluee"
               ><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a
             >
           
@@ -104,8 +104,8 @@
           <div class="d-flex static">
             <div class="profile-picture3 rounded-circle mr-3"></div>
             <div>
-              <a href="#" class="d-block bg-bluee mb-0">Annitas</a>
-              <small class="text-muted">Ana Rodriguez</small>
+              <a href="#" class="d-block bg-bluee mb-0">${usuario}</a>
+              <small class="text-muted">${nombre} ${apellido}</small>
             </div>
           </div>
         </div>
@@ -133,23 +133,15 @@
 
                 <a class="align-self-center bg-bluee">${usuario}</a>
                 <a class="align-self-center bg-bluee"
-                  >Ana Luisa Rodriguez Martinez</a
+                  >${nombre} ${apellido}</a
                 >
 
                 <div class="card-body">
                   <p class="letra" style="text-align: center; font-size: 20px">
-                    Descripción
-                  </p>
-                  <p class="bg-bluee" style="text-align: center">
-                    Estudiante de diseño gráfico. Me gustan mucho los perros,
-                    los poemas y juego de tronos
-                  </p>
-
-                  <p class="letra" style="text-align: center; font-size: 20px">
                     Datos
                   </p>
                   <p class="bg-bluee" style="text-align: left">
-                    Email: anitas@hotmail.com
+                    Email: ${email}
                     <label class="bg-bluee" style="padding-left: 250px"
                       >Edad: 20 años</label
                     >

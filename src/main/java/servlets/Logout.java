@@ -5,30 +5,25 @@ package servlets;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-
-
-import com.mycompany.comparte.resources.Conexion.Usuario;
+import com.mycompany.comparte.resources.Conexion;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.sql.SQLException;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 
 /**
  *
  * @author lalom
  */
-
 @MultipartConfig
-public class Perfil extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,36 +34,25 @@ public class Perfil extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException {
         
-        Usuario usuario = (Usuario) request.getAttribute("User");
-        HttpSession session = request.getSession();
-         
-         
+        Conexion con= new Conexion();    
         
-        if(usuario!=null){
-            /*
-            session.setAttribute("usuario", usuario.usuario);
-            session.setAttribute("nombre", usuario.nombre);
-            session.setAttribute("email", usuario.email);
-            session.setAttribute("User", usuario);
-            */
-             
+        try { 
+        
+            con.Desconexion();
             
-        }else{
-            session.setAttribute("error", "El usuario o contraseña son incorrectos");
-            response.sendRedirect("index.jsp");
+        } catch(Exception ex) {
+           
+            System.out.println("No se pudo realizar la desconexión");
         }
         
         
         
     }
-        
-        
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -78,7 +62,6 @@ public class Perfil extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -86,14 +69,10 @@ public class Perfil extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(Logout.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
     }
-    
-    
-    
-
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -103,26 +82,25 @@ public class Perfil extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(Logout.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
 
 }

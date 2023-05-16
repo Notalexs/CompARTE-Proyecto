@@ -54,7 +54,7 @@
 
                 <a href="publicacion.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-create mr-3 lead"></i>Publicar</a>
                 <a href="perfil.jsp" action="Perfil" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-person mr-3 lead"></i>Perfil</a>
-                <a href="index.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a>
+                <a href="index.jsp" action="Logout" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a>
 
                 
             </div>
@@ -130,7 +130,7 @@
                     </div>
                     <div>
                         <a href="#" class=" d-block bg-bluee mb-0">${usuario}</a>
-                        <small class="text-muted">${nombre}</small>
+                        <small class="text-muted">${nombre} ${apellido} </small>
                     </div>
                     </div>
 

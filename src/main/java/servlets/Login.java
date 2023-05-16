@@ -43,9 +43,9 @@ public class Login extends HttpServlet {
          if(usu!=null){
              session.setAttribute("usuario", usu.usuario);
              session.setAttribute("nombre", usu.nombre);
+             session.setAttribute("apellido", usu.apellido);
+             session.setAttribute("email", usu.email);
              session.setAttribute("User", usu);
-             
-             
              
              response.sendRedirect("Dashboard.jsp");
          }else{

@@ -55,7 +55,7 @@ public static int idLibro = 0;
     // CRUD USER INFO WITHOUT DELETE
     
     public int leerUsuario(String usuario) throws SQLException{
-        int rA=0;
+        int rA = 0;
         String query = "SELECT * from usuario WHERE idusuario='"+usuario+"';";
         System.out.println(query);
         rA=st.executeUpdate(query);
@@ -64,16 +64,17 @@ public static int idLibro = 0;
     
     public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
         int rA=0;
-        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen,idestado) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"',1);";
+        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"');";
         System.out.println(query);
         rA=st.executeUpdate(query);
         return rA;
     }
     
-    public int editarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
+    public int editarUsuario(String nombre, String apellido, String fecha, String email, String pwd,String foto) throws SQLException{
+        
         int rA=0;
         
-        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen,idestado) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"',1);";
+        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"');";
         
         System.out.println(query);
         
@@ -118,6 +119,7 @@ public static int idLibro = 0;
             usuario.usuario = rs.getString("usuario");
           
         }
+        
         return usuario;
     }
         
@@ -309,14 +311,13 @@ public static int idLibro = 0;
     }
     
     public void Desconexion(){
-        try 
-            {
-                ccn.close();            
-                System.exit(0);
-            } catch (SQLException ex) 
-                {
-                    Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        try {
+            ccn.close();            
+            System.exit(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
     
 }
