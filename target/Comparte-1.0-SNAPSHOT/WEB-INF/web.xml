@@ -19,6 +19,10 @@
         <servlet-name>ValidarUsuario</servlet-name>
         <servlet-class>servlets.ValidarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarPerfil</servlet-name>
+        <servlet-class>servlets.EditarPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>ValidarUsuario</servlet-name>
         <url-pattern>/ValidarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarPerfil</servlet-name>
+        <url-pattern>/EditarPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

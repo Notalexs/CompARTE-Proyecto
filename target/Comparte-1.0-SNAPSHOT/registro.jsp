@@ -115,7 +115,7 @@
                 
                 <div class="px-lg-5 py-lg-4 p-4 w-100 mb-auto ">
                     <h1 style="text-align: center;">¡EMPIEZA A CREAR!</h1>
-                    <form action="Registro" method="post"  onsubmit="return validar(); " enctype = "multipart/form-data">
+                    <form action="Registro" method="post" onsubmit="return validar(); " enctype = "multipart/form-data">
                         <div class="form-row ">
                             
                             <div class="form-group col-md-6">

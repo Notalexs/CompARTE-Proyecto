@@ -64,54 +64,55 @@
                 </div>
                 <div class="px-lg-5 py-lg-4 p-4 w-100 mb-auto ">
                     <h1 style="text-align: center;">¡EMPIEZA A EDITAR!</h1>
-                    <form >
+                    
+                    
+                    <form action="EditarPerfil" method="post" enctype="multipart/form-data">
+                        <div class="form-row mb-3 ">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                    Nombre<span class="text-danger">*</span>
+                                <input type="text" name="nombre" id="nombre" class="form-control bg-bluex border-0" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                    Apellido<span class="text-danger">*</span>
+                                <input type="text" name="apellido" id="apellido" class="form-control bg-bluex border-0" placeholder="Tu apellido">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                    Fecha de nacimiento<span class="text-danger">*</span>
+                                <input type="date" name="fecha" id="fecha" class="form-control bg-bluex border-0">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                   Correo electrónico<span class="text-danger">*</span>
+                                <input type="email" name="email" id="email" class="form-control bg-bluex border-0" placeholder="Tu correo electrónico">
+                            </div>
+                           <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                    Foto<span class="text-danger">*</span>
+                                <input type="file" name="file" id="file" class="form-control bg-bluex border-0" required="required">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">
+                                  Contraseña<span class="text-danger">*</span>
+                                <input type="password" name="pwd" id="pwd" class="form-control bg-bluex border-0" placeholder="Tu contraseña">
+                                <p></p>
+                                <button type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4"> Registrar </button>
 
-                    <div class="form-row mb-3 ">
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                                Nombre<span class="text-danger">*</span>
-                            <input type="text" class="form-control bg-bluex border-0" placeholder="Tu nombre">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                                Apellido<span class="text-danger">*</span>
-                            <input type="text" class="form-control bg-bluex border-0" placeholder="Tu apellido">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                                Fecha de nacimiento<span class="text-danger">*</span>
-                            <input type="date" class="form-control bg-bluex border-0">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                               Correo electrónico<span class="text-danger">*</span>
-                            <input type="email" class="form-control bg-bluex border-0" placeholder="Tu correo electrónico">
-                        </div>
-                       <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                                Foto<span class="text-danger">*</span>
-                            <input type="file" name="file" class="form-control bg-bluex border-0" required="required">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold">
-                              Contraseña<span class="text-danger">*</span>
-                            <input type="password" class="form-control bg-bluex border-0" placeholder="Tu contraseña">
-                            <p></p>
-                            <button type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4">Registrar</button>
-                            
-                            <button
-                                onclick="location.href='perfil.jsp'"
-                                type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4"> 
-                                Regresar 
-                            </button>
-                        
-                        </div>
-                        
-                        
-                        
+                                <button
+                                    onclick="location.href='perfil.jsp'"
+                                    type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4"> 
+                                    Volver
+                                </button>
 
-                        
-                    </div>
+                            </div>
+
+
+
+
+
+                        </div>
 
 
 

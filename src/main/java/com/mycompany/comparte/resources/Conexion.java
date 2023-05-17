@@ -70,11 +70,14 @@ public static int idLibro = 0;
         return rA;
     }
     
+    
     public int editarUsuario(String nombre, String apellido, String fecha, String email, String pwd,String foto) throws SQLException{
         
         int rA=0;
         
-        String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"');";
+        String query = 
+        "update usuario "
+        +"set nombre = '"+nombre+"',apellido = '"+apellido+"',email='"+email+"',contrasena='"+pwd+"',fechanac='"+fecha+"',imagen='"+foto+"';";
         
         System.out.println(query);
         
@@ -83,7 +86,6 @@ public static int idLibro = 0;
         return rA;
         
     }
-    
     
     
     

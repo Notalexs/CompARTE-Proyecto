@@ -6,7 +6,6 @@ package servlets;
 
 
 import com.mycompany.comparte.resources.Conexion;
-import com.mycompany.comparte.resources.Conexion.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,28 +34,25 @@ public class EditarPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+         
+       
+        HttpSession session = request.getSession();
+       
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String email = request.getParameter("email");
+        String fecha = request.getParameter("fecha");
+        String pwd = request.getParameter("pwd");
         
+        String foto="prueba";
+       
         
+        Conexion con = new Conexion();
        
-       HttpSession session = request.getSession();
-       
-       String nombre = request.getParameter("nombre");
-       String apellido = request.getParameter("apellido");
-       String email = request.getParameter("email");
-       String fecha = request.getParameter("fechanacimiento");
-
-       String pwd = request.getParameter("pwd");
-       String foto="prueba";
-       
-       
-       Conexion con = new Conexion();
-       
-       
-       int resultado = con.editarUsuario(nombre, apellido, fecha, email, pwd, foto);
+        int resultado = con.editarUsuario(nombre, apellido, fecha, email, pwd, foto);
         
-       response.sendRedirect("perfil.jsp");
-       
-       
+        response.sendRedirect("perfil.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -88,6 +83,7 @@ public class EditarPerfil extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,7 +101,7 @@ public class EditarPerfil extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "EditarPerfilServlet";
     }// </editor-fold>
 
 }
