@@ -23,6 +23,14 @@
         <servlet-name>EditarPerfil</servlet-name>
         <servlet-class>servlets.EditarPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Perfil</servlet-name>
+        <servlet-class>servlets.Perfil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>servlets.NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -42,6 +50,14 @@
     <servlet-mapping>
         <servlet-name>EditarPerfil</servlet-name>
         <url-pattern>/EditarPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Perfil</servlet-name>
+        <url-pattern>/Perfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -41,11 +41,28 @@
 
     <title>CompARTE/Perfil</title>
     
+    
+    
     <script>
     
-        console.log(session);
+        window.onload = function() {
+            // Make an AJAX request to your servlet
+            fetch('Perfil',{
+                method: 'GET'
+            })
+            .then( function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log('Request failed:', error);
+            });
+            
+        };
     
     </script>
+    
+    
+    
     
   </head>
   
@@ -104,8 +121,8 @@
           <div class="d-flex static">
             <div class="profile-picture3 rounded-circle mr-3"></div>
             <div>
-              <a href="#" class="d-block bg-bluee mb-0">${usuario}</a>
-              <small class="text-muted">${nombre} ${apellido}</small>
+              <a href="#" class="d-block bg-bluee mb-0">Usuario ${User}</a>
+              <small class="text-muted">Nombre ${Name} ${lastname}</small>
             </div>
           </div>
         </div>

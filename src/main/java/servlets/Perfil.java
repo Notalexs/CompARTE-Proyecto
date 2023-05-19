@@ -7,6 +7,7 @@ package servlets;
 
 
 
+import com.mycompany.comparte.resources.Conexion;
 import com.mycompany.comparte.resources.Conexion.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -44,30 +45,45 @@ public class Perfil extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+    
+    }
         
-        Usuario usuario = (Usuario) request.getAttribute("User");
+    private void obtaindata(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+
         HttpSession session = request.getSession();
-         
-         
+        
+        String usuario = (String) session.getAttribute("usuario");
+        
+        Conexion con= new Conexion();
         
         if(usuario!=null){
-            /*
-            session.setAttribute("usuario", usuario.usuario);
-            session.setAttribute("nombre", usuario.nombre);
-            session.setAttribute("email", usuario.email);
-            session.setAttribute("User", usuario);
-            */
-             
+            
+            System.out.println("usuario isnt empty"); // Logging statement
+
+            Usuario user = con.leerUsuario(usuario);
+            
+            session.setAttribute("User", user.usuario);
+            session.setAttribute("Name", user.nombre);
+            session.setAttribute("lastname", user.apellido);
+            session.setAttribute("fechanac", user.fechaNac);
+            session.setAttribute("email", user.email);
+            session.setAttribute("foto", user.foto);
+            
+            
+            String usuariouser = (String) session.getAttribute("Name");
+            System.out.println(usuariouser);
+            
+            
             
         }else{
             session.setAttribute("error", "El usuario o contraseña son incorrectos");
             response.sendRedirect("index.jsp");
+            response.setStatus(500);
         }
         
         
-        
     }
-        
+    
         
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -84,10 +100,11 @@ public class Perfil extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                obtaindata(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
+                response.setStatus(500); // Internal Server Error
+            }
         
     }
     
@@ -126,3 +143,5 @@ public class Perfil extends HttpServlet {
 
 
 }
+
+    

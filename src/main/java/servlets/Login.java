@@ -40,14 +40,15 @@ public class Login extends HttpServlet {
          Conexion con = new Conexion();
          
          Usuario usu=con.login(usuario, pwd);
+         
          if(usu!=null){
              session.setAttribute("usuario", usu.usuario);
              session.setAttribute("nombre", usu.nombre);
              session.setAttribute("apellido", usu.apellido);
-             session.setAttribute("email", usu.email);
-             session.setAttribute("User", usu);
+             session.setAttribute("email", usu.email);             
              
              response.sendRedirect("Dashboard.jsp");
+             
          }else{
               session.setAttribute("error", "El usuario o contraseña son incorrectos");
               response.sendRedirect("index.jsp");

@@ -48,19 +48,49 @@ public static int idLibro = 0;
         public String fechaCrea;
         public String foto;
         public int idUsuario;
-        public int idEstado;
     }
     
     
     // CRUD USER INFO WITHOUT DELETE
     
-    public int leerUsuario(String usuario) throws SQLException{
-        int rA = 0;
-        String query = "SELECT * from usuario WHERE idusuario='"+usuario+"';";
+    public Usuario leerUsuario(String usuario) throws SQLException{
+        
+        Usuario user = null;
+        
+        String query = "SELECT * from usuario WHERE usuario='"+usuario+"';";
+        
         System.out.println(query);
-        rA=st.executeUpdate(query);
-        return rA;
+        
+        //rA=st.executeUpdate(query);
+        
+        ResultSet rs = st.executeQuery(query);
+        
+        if (rs.next()) {
+            user = new Usuario();
+            
+            user.nombre = rs.getString("nombre");
+            user.apellido = rs.getString("apellido");
+            user.email = rs.getString("email");
+            user.usuario = rs.getString("usuario");
+            
+            // Optionally, you can print the retrieved data for debugging
+            System.out.println("Usuario: " + user.usuario);
+            System.out.println("Nombre: " + user.nombre);
+            System.out.println("Apellido: " + user.apellido);
+            // Print other attributes
+
+            // Close the result set (optional)
+            
+        }
+        
+        rs.close();
+        System.out.println("User: "+user);
+        return user;
+        
     }
+    
+    
+    
     
     public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
         int rA=0;
