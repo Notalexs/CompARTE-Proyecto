@@ -43,21 +43,46 @@
     
     
     
-    <script>
+    <script defer>
     
-        window.onload = function() {
-            // Make an AJAX request to your servlet
-            fetch('Perfil',{
-                method: 'GET'
-            })
-            .then( function(response) {
-                console.log(response);
-            })
-            .catch(function(error) {
-                console.log('Request failed:', error);
-            });
+        /*
+                    window.onload = function() {
+                    // Make an AJAX request to your servlet
+                    fetch('Perfil',{
+                        method: 'GET'
+                    })
+                    .then( function(response) {
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log('Request failed:', error);
+                    });
             
         };
+
+        
+        */
+
+        
+        /*
+          
+                  async function getUserdata() {
+            try {
+              const response = await fetch('Perfil', { method: 'GET' });
+              console.log(response);
+            } catch (error) {
+              console.log('Request failed:', error);
+            }
+        }
+    
+        document.addEventListener("DOMContentLoaded", async () => {
+            await getUserdata();       
+        });
+          
+      
+        */
+
+    
     
     </script>
     

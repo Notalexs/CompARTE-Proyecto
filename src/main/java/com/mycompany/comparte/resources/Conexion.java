@@ -50,6 +50,14 @@ public static int idLibro = 0;
         public int idUsuario;
     }
     
+    public class Post{
+        public String usuario;
+        public String pwd; 
+        public String nombre;
+        public String apellido;
+        public String email;
+    }
+    
     
     // CRUD USER INFO WITHOUT DELETE
     

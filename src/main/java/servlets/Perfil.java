@@ -48,7 +48,7 @@ public class Perfil extends HttpServlet {
     
     }
         
-    private void obtaindata(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+    private void obtaindata(HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, ServletException {
 
         HttpSession session = request.getSession();
         
@@ -70,8 +70,8 @@ public class Perfil extends HttpServlet {
             session.setAttribute("foto", user.foto);
             
             
-            String usuariouser = (String) session.getAttribute("Name");
-            System.out.println(usuariouser);
+
+            
             
             
             
@@ -100,11 +100,10 @@ public class Perfil extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-                obtaindata(request, response);
-            } catch (Exception ex) {
-                Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
-                response.setStatus(500); // Internal Server Error
-            }
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -123,11 +122,15 @@ public class Perfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        System.out.println("Entró a doPost");
+        
         try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                obtaindata(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(Perfil.class.getName()).log(Level.SEVERE, null, ex);
+                response.setStatus(500); // Internal Server Error
+            }
     }
 
     /**

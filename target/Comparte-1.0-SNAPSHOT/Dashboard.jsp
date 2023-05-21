@@ -19,13 +19,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Satisfy&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com//ffec4ec2ed.js" crossorigin="anonymous"></script>
     
-<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="tablero.css">
     <title>CompARTE</title>
+    
+    
+    
+    
+        
+    
+    
   </head>
+  
+  
   <body class="back">
 
     <div class="d-flex">
@@ -53,9 +62,11 @@
                   
 
                 <a href="publicacion.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-create mr-3 lead"></i>Publicar</a>
-                <a href="perfil.jsp" action="Perfil" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-person mr-3 lead"></i>Perfil</a>
+                <a href="#" onclick="doPostRequest(); return false;" class="d-block p-3 bg-bluee">
+                    <i class="icon ion-md-person mr-3 lead"></i>Perfil
+                </a>
                 <a href="index.jsp" action="Logout" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a>
-
+                
                 
             </div>
             </div>
@@ -166,7 +177,25 @@
         </div>
     </section>-->
 
-
+    <script>
+  
+        function doPostRequest() {
+            fetch('Perfil', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: ''
+            })
+            .then(function(response) {
+              // Manejar la respuesta del servlet aquí
+            })
+            .catch(function(error) {
+              console.log('Error:', error);
+            });
+        }
+    
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
