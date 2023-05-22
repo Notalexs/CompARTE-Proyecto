@@ -51,11 +51,11 @@ public static int idLibro = 0;
     }
     
     public class Post{
-        public String usuario;
-        public String pwd; 
-        public String nombre;
-        public String apellido;
-        public String email;
+        public String titulo;
+        public String foto; 
+        public String descripcion;
+        public String categoria;
+        public String idusuario;
     }
     
     
@@ -96,10 +96,7 @@ public static int idLibro = 0;
         return user;
         
     }
-    
-    
-    
-    
+  
     public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
         int rA=0;
         String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"');";
@@ -107,8 +104,7 @@ public static int idLibro = 0;
         rA=st.executeUpdate(query);
         return rA;
     }
-    
-    
+      
     public int editarUsuario(String nombre, String apellido, String fecha, String email, String pwd,String foto) throws SQLException{
         
         int rA=0;
@@ -124,8 +120,6 @@ public static int idLibro = 0;
         return rA;
         
     }
-    
-    
     
     public int validarUsuario(String usu) throws SQLException{
         
@@ -143,7 +137,6 @@ public static int idLibro = 0;
         
         return e;
     }
-    
     
     public Usuario login(String usu, String pwd) throws SQLException{
         Usuario usuario = null;
@@ -163,6 +156,103 @@ public static int idLibro = 0;
         return usuario;
     }
         
+    
+    
+    // CRUD POST
+    
+    
+    
+    public Post leerPost(String usuario) throws SQLException{
+        
+        Post post = new Post();
+        
+        String query = "SELECT * from post WHERE usuario='"+usuario+"';";
+        
+        System.out.println(query);
+        
+        ResultSet rs = st.executeQuery(query);
+        
+        if (rs.next()) {
+            
+            
+            post.categoria = rs.getString("nombre");
+            post.descripcion = rs.getString("apellido");
+            post.foto = rs.getString("usuario");
+            post.titulo = rs.getString("usuario");
+            
+            // Optionally, you can print the retrieved data for debugging
+            System.out.println("Usuario: " + post.categoria);
+
+            // Print other attributes
+
+            // Close the result set (optional)
+            
+        }
+        
+        rs.close();
+        System.out.println("User: "+user);
+        
+        
+        return post;
+    
+    
+    
+    }
+    
+    public int agregarPost(Post post) throws SQLException{
+                
+        int rA=0;
+        String query = 
+                "insert into post"
+                + "(categoria,descripcion,idusuario,titulo,foto,fechacrea) "
+                + "values('"+post.categoria+"','"+post.descripcion+"','"+post.idusuario+"','"+post.titulo+"','"+post.foto+"',NOW()');";
+        System.out.println(query);
+        rA=st.executeUpdate(query);
+        return rA;
+
+    }
+    
+    
+    public int actualizarPost(Post post) throws SQLException{
+        
+        int rA=0;
+        
+        String query = 
+        "update post "
+        +"set categoria = '"+post.categoria+"',descripcion = '"
+        + ""+post.descripcion+"','idusuario = '"+post.idusuario+"',titulo = '"
+        + ""+post.titulo+"',imagen='"+post.foto+"';";
+        
+        System.out.println(query);
+        
+        rA=st.executeUpdate(query);
+        
+        return rA;
+        
+    }
+    
+    
+    public int eliminarPost(String idpost) throws SQLException{
+    
+        int rA=0;
+
+        String query = 
+        "delete from post where idpost='"+idpost+"';";
+        
+        System.out.println(query);
+        
+        rA=st.executeUpdate(query);
+        
+        return rA;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     /*
         public int agregarUsuario(String nombre, String app, String apm, String tel,String email) throws SQLException{

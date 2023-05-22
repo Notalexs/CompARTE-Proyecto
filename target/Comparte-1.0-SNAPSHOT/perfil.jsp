@@ -43,52 +43,6 @@
     
     
     
-    <script defer>
-    
-        /*
-                    window.onload = function() {
-                    // Make an AJAX request to your servlet
-                    fetch('Perfil',{
-                        method: 'GET'
-                    })
-                    .then( function(response) {
-                        console.log(response);
-                    })
-                    .catch(function(error) {
-                        console.log('Request failed:', error);
-                    });
-            
-        };
-
-        
-        */
-
-        
-        /*
-          
-                  async function getUserdata() {
-            try {
-              const response = await fetch('Perfil', { method: 'GET' });
-              console.log(response);
-            } catch (error) {
-              console.log('Request failed:', error);
-            }
-        }
-    
-        document.addEventListener("DOMContentLoaded", async () => {
-            await getUserdata();       
-        });
-          
-      
-        */
-
-    
-    
-    </script>
-    
-    
-    
-    
   </head>
   
   <body class="back">
@@ -146,8 +100,8 @@
           <div class="d-flex static">
             <div class="profile-picture3 rounded-circle mr-3"></div>
             <div>
-              <a href="#" class="d-block bg-bluee mb-0">Usuario ${User}</a>
-              <small class="text-muted">Nombre ${Name} ${lastname}</small>
+              <a href="#" class="d-block bg-bluee mb-0">${User}</a>
+              <small class="text-muted">${Name} ${lastname}</small>
             </div>
           </div>
         </div>

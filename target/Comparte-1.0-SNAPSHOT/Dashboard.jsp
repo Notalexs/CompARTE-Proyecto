@@ -27,7 +27,21 @@
     <title>CompARTE</title>
     
     
+    <script>
+  
+        function doPostRequest() {
+            fetch('Perfil', {
+              method: 'POST'
+            })
+            .then(function(response) {
+              // Manejar la respuesta del servlet aquí
+            })
+            .catch(function(error) {
+              console.log('Error:', error);
+            });
+        }
     
+    </script>
     
         
     
@@ -62,7 +76,7 @@
                   
 
                 <a href="publicacion.jsp" class="d-block p-3 bg-bluee"><i class="icon ion-md-create mr-3 lead"></i>Publicar</a>
-                <a href="#" onclick="doPostRequest(); return false;" class="d-block p-3 bg-bluee">
+                <a href="perfil.jsp" onclick="doPostRequest()" class="d-block p-3 bg-bluee">
                     <i class="icon ion-md-person mr-3 lead"></i>Perfil
                 </a>
                 <a href="index.jsp" action="Logout" method="post" class="d-block p-3 bg-bluee"><i class="icon ion-md-power mr-3 lead"></i>Cerrar sesión</a>
@@ -177,25 +191,7 @@
         </div>
     </section>-->
 
-    <script>
-  
-        function doPostRequest() {
-            fetch('Perfil', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              body: ''
-            })
-            .then(function(response) {
-              // Manejar la respuesta del servlet aquí
-            })
-            .catch(function(error) {
-              console.log('Error:', error);
-            });
-        }
     
-    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
