@@ -89,11 +89,11 @@ public class Registro extends HttpServlet {
             String fileName = filePart.getSubmittedFileName();
             
             try (InputStream fileContent = filePart.getInputStream()) {
-                foto = rutaimagen+fileName;
+                foto = (fileName);
                 Files.copy(fileContent, Paths.get(rutaimagen + fileName), StandardCopyOption.REPLACE_EXISTING);
                 
                 System.out.println("Subida completada correctamente.");
-            
+                
                 Conexion con= new Conexion();
 
                 int resultado = con.agregarUsuario(nombre, apellido, fecha, email, usuario, pwd, foto );

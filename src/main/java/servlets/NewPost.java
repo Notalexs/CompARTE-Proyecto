@@ -6,13 +6,20 @@ package servlets;
 
 import com.mycompany.comparte.resources.Conexion;
 import com.mycompany.comparte.resources.Conexion.Post;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,29 +39,66 @@ public class NewPost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         
-        Post post = null;
+        String titulo;
+        String foto; 
+        String descripcion;
+        String categoria;
+        String idusuario;
+        
+        HttpSession session=  request.getSession();
+        
+        categoria = request.getParameter("categoria");
+        descripcion = request.getParameter("descripcion");
+        titulo = request.getParameter("titulo");
+        idusuario = (String) session.getAttribute("idusuario");
+        
+        
+        ServletContext context = getServletContext();
+        String rootPath = context.getRealPath("/");
+        
+        System.out.println(rootPath);
+        String ruta = rootPath.replace("\\", "\\\\");
+        
+        
+        String rutaimagen = rootPath + "/imagenes/";
         
         
         
-        post.categoria = request.getParameter("categoria");
-        post.descripcion = request.getParameter("descripcion");
-        post.idusuario = request.getParameter("email");
-        post.titulo = request.getParameter("fechanacimiento");
+        String rutaCarpeta = ruta  + "imagenes\\\\";
+        System.out.println("RutaCarpeta: "+rutaCarpeta);
+
+        File carpeta = new File(rutaCarpeta);
+        boolean creacionExitosa = carpeta.mkdirs();
+        if (creacionExitosa) {
+            System.out.println("La carpeta se ha creado correctamente.");
+        } else {
+            System.out.println("No se pudo crear la carpeta.");
+        }
         
-        Part fotoPart = request.getPart("foto"); // Obtener la parte (input) del formulario que contiene la foto
-        post.foto = fotoPart.getInputStream(); // Obtener el flujo de entrada de la foto
+            Part filePart = request.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            
+            try (InputStream fileContent = filePart.getInputStream()) {
+                foto = (fileName);
+                Files.copy(fileContent, Paths.get(rutaimagen + fileName), StandardCopyOption.REPLACE_EXISTING);
+                
+                System.out.println("Subida completada correctamente.");
+                
+                Conexion con= new Conexion();
+
+                int resultado = con.agregarPost(titulo,foto,descripcion,categoria,idusuario);
         
-        Conexion con= new Conexion();
-      
-   
-        
-        int resultado = con.agregarPost(post);
-        
-        response.sendRedirect("index.jsp");
+                response.sendRedirect("Dashboard.jsp");
+                
+            } catch (Exception ex) {
+                System.out.println("Error en la subida: " + ex.getMessage());
+            }
+               
         
         
     }

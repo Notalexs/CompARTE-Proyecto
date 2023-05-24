@@ -53,13 +53,9 @@ public static int idLibro = 0;
         public int idUsuario;
     }
     
-    public class Post{
-        public String titulo;
-        public InputStream foto; 
-        public String descripcion;
-        public String categoria;
-        public String idusuario;
-    }
+    
+       
+    
     
     
     // CRUD USER INFO WITHOUT DELETE
@@ -209,13 +205,13 @@ public static int idLibro = 0;
     }
     
     */
-    public int agregarPost(Post post) throws SQLException{
+    public int agregarPost(String titulo, String foto, String descripcion,String categoria, String idusuario) throws SQLException{
                 
         int rA=0;
         String query = 
                 "insert into post"
                 + "(categoria,descripcion,idusuario,titulo,foto,fechacrea)"
-                + "values('"+post.categoria+"','"+post.descripcion+"','"+post.idusuario+"','"+post.titulo+"','"+post.foto+"',NOW()');";
+                + "values('"+categoria+"','"+descripcion+"','"+idusuario+"','"+titulo+"','"+foto+"',NOW()');";
         System.out.println(query);
         rA=st.executeUpdate(query);
         return rA;
@@ -223,15 +219,15 @@ public static int idLibro = 0;
     }
     
     
-    public int actualizarPost(Post post) throws SQLException{
+    public int actualizarPost(String titulo, String foto, String descripcion,String categoria, String idusuario) throws SQLException{
         
         int rA=0;
         
         String query = 
         "update post "
-        +"set categoria = '"+post.categoria+"',descripcion = '"
-        + ""+post.descripcion+"','idusuario = '"+post.idusuario+"',titulo = '"
-        + ""+post.titulo+"',imagen='"+post.foto+"';";
+        +"set categoria = '"+categoria+"',descripcion = '"
+        + ""+descripcion+"','idusuario = '"+idusuario+"',titulo = '"
+        + ""+titulo+"',imagen='"+foto+"';";
         
         System.out.println(query);
         

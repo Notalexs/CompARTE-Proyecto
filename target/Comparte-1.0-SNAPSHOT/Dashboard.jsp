@@ -153,7 +153,7 @@
                 <div class="col-lg-4">
                     <div class="d-flex static">
                         <div>
-                            <img src=${userphoto} class="profile-picture3 rounded-circle mr-3 ">
+                            <img src="../../../target/Comparte-1.0-SNAPSHOT/imagenes/${userphoto}" class="profile-picture3 rounded-circle mr-3 ">
                         </div>
                         
                         <div>

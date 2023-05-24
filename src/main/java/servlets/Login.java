@@ -45,6 +45,7 @@ public class Login extends HttpServlet {
          
          if(usu!=null){
              session.setAttribute("usuario", usu.usuario);
+             session.setAttribute("idusuario", usu.idUsuario);
              session.setAttribute("nombre", usu.nombre);
              session.setAttribute("apellido", usu.apellido);
              session.setAttribute("email", usu.email);             
