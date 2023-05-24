@@ -5,6 +5,7 @@
 package servlets;
 
 import com.mycompany.comparte.resources.Conexion;
+import com.mycompany.comparte.resources.Conexion.Usuario;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -12,9 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -46,7 +51,7 @@ public class Registro extends HttpServlet {
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {       
         
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
@@ -54,40 +59,53 @@ public class Registro extends HttpServlet {
         String fecha = request.getParameter("fechanacimiento");
         String usuario = request.getParameter("usuario");
         String pwd = request.getParameter("pwd");
-        String foto="prueba";
+        String foto = null;
         
-        Conexion con= new Conexion();
-      
-        File file ;
-        int maxFileSize = 5000 * 1024;
-        int maxMemSize = 5000 * 1024;
-        ServletContext context = this.getServletContext();
+        
+        
+        ServletContext context = getServletContext();
+        String rootPath = context.getRealPath("/");
+        
+        System.out.println(rootPath);
+        String ruta = rootPath.replace("\\", "\\\\");
+        
+        
+        String rutaimagen = rootPath + "/imagenes/";
+        
+        
+        
+        String rutaCarpeta = ruta  + "imagenes\\\\";
+        System.out.println("RutaCarpeta: "+rutaCarpeta);
 
-        // Verify the content type
-        String contentType = request.getContentType();
-     
-        try { 
-           // Parse the request to get file items.
-              final Collection<Part> fileItems = request.getParts();
-
-              for (final Part part : fileItems) {
-                  if(part.getSubmittedFileName()!=null){
-                      part.write("..\\..\\..\\..\\..\\..\\..\\..\\..\\imagenes\\"+part.getSubmittedFileName());
-                      foto = part.getSubmittedFileName();
-                      System.out.println(part.getSubmittedFileName());
-                      System.out.println();
-                  }
-              }
-
-              System.out.println("Subido correctamente");
-        } catch(Exception ex) {
-           System.out.println("error de subida "+ex.getMessage());
+        File carpeta = new File(rutaCarpeta);
+        boolean creacionExitosa = carpeta.mkdirs();
+        if (creacionExitosa) {
+            System.out.println("La carpeta se ha creado correctamente.");
+        } else {
+            System.out.println("No se pudo crear la carpeta.");
         }
-   
         
-        int resultado = con.agregarUsuario(nombre, apellido, fecha, email, usuario, pwd, foto);
+            Part filePart = request.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            
+            try (InputStream fileContent = filePart.getInputStream()) {
+                foto = rutaimagen+fileName;
+                Files.copy(fileContent, Paths.get(rutaimagen + fileName), StandardCopyOption.REPLACE_EXISTING);
+                
+                System.out.println("Subida completada correctamente.");
+            
+                Conexion con= new Conexion();
+
+                int resultado = con.agregarUsuario(nombre, apellido, fecha, email, usuario, pwd, foto );
+
+                response.sendRedirect("index.jsp");
+                
+            } catch (Exception ex) {
+                System.out.println("Error en la subida: " + ex.getMessage());
+            }
+
         
-        response.sendRedirect("index.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

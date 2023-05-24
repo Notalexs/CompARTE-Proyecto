@@ -63,8 +63,8 @@
                 <div class="profile-picture3 rounded-circle mr-3 ">
                 </div>
                 <div>
-                    <a href="#" class=" d-block bg-bluee mb-0">Annitas</a>
-                    <small class="text-muted">Ana Rodriguez</small>
+                    <a href="#" class=" d-block bg-bluee mb-0">${User}</a>
+                    <small class="text-muted">${Name} ${lastname}</small>
                 </div>
                 </div>
           
@@ -95,7 +95,7 @@
                            <div class="card-body d-flex">
                                <div class="d-flex d-flex-grow-1">
                                    <div class="profile-picture3 rounded-circle mr-3"></div>
-                                   <a class=" align-self-center bg-bluee ">ANNITAS</a>
+                                   <a class=" align-self-center bg-bluee "> ${User}</a>
                                </div>
 
                                
@@ -108,12 +108,11 @@
                            </div>
                            <form  enctype = "multipart/form-data" action="NewPost" method="post">
                             <div class="card-body">
-
-                             <p class="letra">Título</p>
-                            <input type="text" name="titulo" />  
+                                <p class="letra">Título</p>
+                                <input type="text" name="titulo" id="titulo"/>  
                             </div> 
                                
-                             <div class="card-body">
+                            <div class="card-body">
 
                              <p class="letra">Foto</p>
                              <input type="file" value="subir" name="file">  
@@ -122,13 +121,13 @@
                             <div class="card-body">
 
                              <p class="letra">Descripción</p>
-                             <textarea type="text" name="descripcion"></textarea>  
+                             <textarea type="text" name="descripcion" id="descripcion"></textarea>  
                             </div> 
                          
 
                            <div class="card-body">
-                               <p class="letra">Categoría</p>
-                               <select name="Categoria" class="mx-5 mb-4">
+                               <p class="letra"> Categoría </p>
+                               <select name="Categoria" id="categoria" value="" class="mx-5 mb-4">
 
                                    <option value="1">Pintura</option>
 

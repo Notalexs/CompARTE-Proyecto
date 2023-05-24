@@ -29,6 +29,8 @@ public class Login extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -46,6 +48,9 @@ public class Login extends HttpServlet {
              session.setAttribute("nombre", usu.nombre);
              session.setAttribute("apellido", usu.apellido);
              session.setAttribute("email", usu.email);             
+             session.setAttribute("userphoto", usu.foto);
+             
+             System.out.println(usu.foto);
              
              response.sendRedirect("Dashboard.jsp");
              

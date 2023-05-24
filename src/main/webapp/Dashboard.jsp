@@ -134,7 +134,8 @@
                             
                         </div>
 
-                        <img src="posible.jpg" class="img-fluid">
+                        <img src="" alt="foto" class="img-fluid">
+                        
                         <div class="card-body">
                             <div class="d-flex ">
                                 <i class=" icon ion-md-flower lead"></i><h1 class="bg-bluee tamaño d-flex px-lg-2">3.5K likes</h1>
@@ -151,12 +152,14 @@
 
                 <div class="col-lg-4">
                     <div class="d-flex static">
-                    <div class="profile-picture3 rounded-circle mr-3 ">
-                    </div>
-                    <div>
-                        <a href="#" class=" d-block bg-bluee mb-0">${usuario}</a>
-                        <small class="text-muted">${nombre} ${apellido} </small>
-                    </div>
+                        <div>
+                            <img src=${userphoto} class="profile-picture3 rounded-circle mr-3 ">
+                        </div>
+                        
+                        <div>
+                            <a href="#" class=" d-block bg-bluee mb-0">${usuario}</a>
+                            <small class="text-muted">${nombre} ${apellido} </small>
+                        </div>
                     </div>
 
                 </div>

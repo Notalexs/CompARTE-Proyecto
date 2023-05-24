@@ -5,6 +5,9 @@
 package com.mycompany.comparte.resources;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +55,7 @@ public static int idLibro = 0;
     
     public class Post{
         public String titulo;
-        public String foto; 
+        public InputStream foto; 
         public String descripcion;
         public String categoria;
         public String idusuario;
@@ -97,10 +100,10 @@ public static int idLibro = 0;
         
     }
   
-    public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd,String foto) throws SQLException{
+    public int agregarUsuario(String nombre, String apellido, String fecha, String email, String usuario, String pwd, String foto) throws SQLException{
         int rA=0;
         String query = "insert into usuario(nombre,apellido,email,contrasena,usuario,fechanac,fechacrea,imagen) values('"+nombre+"','"+apellido+"','"+email+"','"+pwd+"','"+usuario+"','"+fecha+"',NOW(),'"+foto+"');";
-        System.out.println(query);
+        System.out.println("Esta es la query de agregarusuario: "+query);
         rA=st.executeUpdate(query);
         return rA;
     }
@@ -138,7 +141,7 @@ public static int idLibro = 0;
         return e;
     }
     
-    public Usuario login(String usu, String pwd) throws SQLException{
+    public Usuario login(String usu, String pwd) throws SQLException, IOException{
         Usuario usuario = null;
         String query = "select * from usuario where email='"+usu+"' and contrasena='"+pwd+"'";
          
@@ -150,8 +153,13 @@ public static int idLibro = 0;
             usuario.apellido = rs.getString("apellido");
             usuario.email = rs.getString("email");
             usuario.usuario = rs.getString("usuario");
-          
+            usuario.foto = rs.getString("imagen");
         }
+        
+        
+        
+        
+        
         
         return usuario;
     }
@@ -162,11 +170,12 @@ public static int idLibro = 0;
     
     
     
+    /*
     public Post leerPost(String usuario) throws SQLException{
         
         Post post = new Post();
         
-        String query = "SELECT * from post WHERE usuario='"+usuario+"';";
+        String query = "SELECT * from post WHERE idusuario='"+usuario+"';";
         
         System.out.println(query);
         
@@ -199,12 +208,13 @@ public static int idLibro = 0;
     
     }
     
+    */
     public int agregarPost(Post post) throws SQLException{
                 
         int rA=0;
         String query = 
                 "insert into post"
-                + "(categoria,descripcion,idusuario,titulo,foto,fechacrea) "
+                + "(categoria,descripcion,idusuario,titulo,foto,fechacrea)"
                 + "values('"+post.categoria+"','"+post.descripcion+"','"+post.idusuario+"','"+post.titulo+"','"+post.foto+"',NOW()');";
         System.out.println(query);
         rA=st.executeUpdate(query);

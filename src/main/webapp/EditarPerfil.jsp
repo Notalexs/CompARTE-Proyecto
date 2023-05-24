@@ -48,16 +48,8 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-
-
-
-
-
-
-
-
-
             </div>
+            
             <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100">
                 <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 w-100 mb-auto ">
                 <img src="compARTE.png" class="img-fluid" width="150" height="150">
@@ -71,32 +63,32 @@
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                     Nombre<span class="text-danger">*</span>
-                                <input type="text" name="nombre" id="nombre" class="form-control bg-bluex border-0" placeholder="Tu nombre">
+                                <input type="text" name="nombre" id="nombre" class="form-control bg-bluex border-0" placeholder="Tu nombre" value=${name}>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                     Apellido<span class="text-danger">*</span>
-                                <input type="text" name="apellido" id="apellido" class="form-control bg-bluex border-0" placeholder="Tu apellido">
+                                <input type="text" name="apellido" id="apellido" class="form-control bg-bluex border-0" placeholder="Tu apellido" value=${lastname}>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                     Fecha de nacimiento<span class="text-danger">*</span>
-                                <input type="date" name="fecha" id="fecha" class="form-control bg-bluex border-0">
+                                <input type="date" name="fecha" id="fecha" class="form-control bg-bluex border-0" value=${fechanac}>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                    Correo electrónico<span class="text-danger">*</span>
-                                <input type="email" name="email" id="email" class="form-control bg-bluex border-0" placeholder="Tu correo electrónico">
+                                <input type="email" name="email" id="email" class="form-control bg-bluex border-0" placeholder="Tu correo electrónico" value=${email}>
                             </div>
                            <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                     Foto<span class="text-danger">*</span>
-                                <input type="file" name="file" id="file" class="form-control bg-bluex border-0" required="required">
+                                <input type="file" name="file" id="file" class="form-control bg-bluex border-0" required="required" value=${foto}>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">
                                   Contraseña<span class="text-danger">*</span>
-                                <input type="password" name="pwd" id="pwd" class="form-control bg-bluex border-0" placeholder="Tu contraseña">
+                                <input type="password" name="pwd" id="pwd" class="form-control bg-bluex border-0" placeholder="Tu contraseña" value=${pwd}>
                                 <p></p>
                                 <button type="submit" class="btn btn-primary  bg-bluey border-0 md-2 py-lg-4"> Registrar </button>
 
